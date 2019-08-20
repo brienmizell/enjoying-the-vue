@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Second App</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    <div id="app">
+      <button v-on:click="increase(2, $event)">Click Me!</button>
+      <p>{{ counter }}</p>
+      <p v-on:mousemove="updateCoordinates">
+        Coordinates {{ x }} / {{ y }} -
+        <span v-on:mousemove.stop="">DEAD SPOT</span>
+      </p>
+      <input type="text" v-on:keyup.enter="alertMe" />
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          counter: 0
+        },
+        methods: {
+          increase: function(step, event) {
+            this.counter += step;
+          },
+          updateCoordinates: function(event) {
+            this.x = event.clientX;
+            this.y = event.clientY;
+            console.log("The coordinates are " + this.x + " / " + this.y + ".");
+          },
+          alertMe: function() {
+            alert("Alert!");
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -10,24 +10,28 @@
   <body>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <div id="app">
-      <div class="demo" @click="attachRed = !attachRed" :class="divClasses">
+      <div class="demo" :style="{backgroundColor: color}">
         yo
       </div>
-      <div class="demo" :class="{red: attachRed}">yo</div>
-      <div class="demo">yo</div>
+      <div class="demo" :style="myStyle">yo</div>
+      <div class="demo" :style="[myStyle, {height: width + 'px'}]">yo</div>
+      <hr />
+      <input type="text" v-model="color" />
+      <input type="text" v-model="width" />
     </div>
 
     <script>
       new Vue({
         el: "#app",
         data: {
-          attachRed: false
+          color: "gray",
+          width: 100
         },
         computed: {
-          divClasses: function() {
+          myStyle: function() {
             return {
-              red: this.attachRed,
-              blue: !this.attachRed
+              backgroundColor: this.color,
+              width: this.width + "px"
             };
           }
         }

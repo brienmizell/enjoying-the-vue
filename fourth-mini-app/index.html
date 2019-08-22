@@ -10,14 +10,23 @@
   <body>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <div id="app">
-      <div class="demo">yo</div>
+      <div
+        class="demo"
+        @click="attachRed = !attachRed"
+        :class="{red: attachRed}"
+      >
+        yo
+      </div>
       <div class="demo">yo</div>
       <div class="demo">yo</div>
     </div>
 
     <script>
       new Vue({
-        el: "#app"
+        el: "#app",
+        data: {
+          attachRed: false
+        }
       });
     </script>
   </body>

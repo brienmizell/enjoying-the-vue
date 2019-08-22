@@ -10,14 +10,10 @@
   <body>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <div id="app">
-      <div
-        class="demo"
-        @click="attachRed = !attachRed"
-        :class="{red: attachRed}"
-      >
+      <div class="demo" @click="attachRed = !attachRed" :class="divClasses">
         yo
       </div>
-      <div class="demo">yo</div>
+      <div class="demo" :class="{red: attachRed}">yo</div>
       <div class="demo">yo</div>
     </div>
 
@@ -26,6 +22,14 @@
         el: "#app",
         data: {
           attachRed: false
+        },
+        computed: {
+          divClasses: function() {
+            return {
+              red: this.attachRed,
+              blue: !this.attachRed
+            };
+          }
         }
       });
     </script>

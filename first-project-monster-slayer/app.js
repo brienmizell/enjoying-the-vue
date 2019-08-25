@@ -34,7 +34,9 @@ new Vue({
         this.playerHealth = 100;
       }
     },
-    giveUp: function() {},
+    giveUp: function() {
+      this.gameIsRunning = false;
+    },
     monsterAttacks: function() {
       this.playerHealth -= this.calculateDamage(5, 12);
       this.checkWin();

@@ -3,13 +3,17 @@ var data = {
   showParagraph: false
 };
 
+Vue.component("hello", {
+  template: "<h1>Hello!</h1>"
+});
+
 var vm1 = new Vue({
-  el: "#app1",
   data: data,
   methods: {
     show: function() {
       this.showParagraph = true;
       this.updateTitle("The VueJS Instance (Updated)");
+      this.$refs.myButton.innerText = "Test";
     },
     updateTitle: function(title) {
       this.title = title;
@@ -27,7 +31,10 @@ var vm1 = new Vue({
   }
 });
 
+vm1.$mount("#app1");
+
 console.log(vm1.$data === data);
+vm1.$refs.heading.innerText = "Something else";
 
 setTimeout(function() {
   vm1.title = "Changed by Timer";
@@ -45,3 +52,12 @@ var vm2 = new Vue({
     }
   }
 });
+
+var vm3 = new Vue({
+  el: "hello",
+  template: "<h1>Hello!</h1>"
+});
+
+vm3.$mount("#app3");
+
+document.getElementById("app3").appendChild(vm3.$el);

@@ -8,28 +8,30 @@
           <!-- Full Name (First Name + Last Name) -->
           <div class="form-group">
             <label for="firstName">First Name:</label>
-            <input
-              type="text"
-              id="firstName"
-              class="form-control"
-              v-model.lazy="userData.firstName"
-            />
+            <input type="text" id="firstName" class="form-control" v-model.lazy="firstName" />
             <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" class="form-control" v-model.lazy="userData.firstName" />
+            <input type="text" id="lastName" class="form-control" v-model.lazy="lastName" />
           </div>
           <!-- Mail -->
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="text" name id="email" class="form-control" v-model.lazy="userData.email" />
+            <input type="text" name id="email" class="form-control" v-model.lazy="email" />
           </div>
           <!-- Password -->
           <div class="form-group">
             <label for="password">Password:</label>
-            <input type="text" name="password" id class="form-control" />
+            <input type="password" name="password" id class="form-control" v-model="password" />
           </div>
           <!-- Store Data? Yes/No -->
-          <div class="form-group">
-            <label type="radio" value="Yes">Yes</label>
+          <div class="form-check">
+            Store Data?
+            <br />
+            <label for>
+              <input type="radio" value="Yes" v-model="storeData" /> Yes
+            </label>
+            <label for>
+              <input type="radio" value="No" v-model="storeData" /> No
+            </label>
           </div>
           <!-- Exercise 2 -->
           <!-- Only display the Form if it has NOT been submitted -->
@@ -49,10 +51,10 @@
             <h4>Your Data</h4>
           </div>
           <div class="panel-body">
-            <p>Full Name: {{userData.firstName + " " + userData.lastName}}</p>
-            <p>Email: {{userData.email}}</p>
+            <p>Full Name: {{firstName }} {{ lastName}}</p>
+            <p>Email: {{email}}</p>
             <p>Password: {{password}}</p>
-            <p>Store in Database?:</p>
+            <p>Store in Database?: {{storeData}}</p>
           </div>
         </div>
       </div>
@@ -64,12 +66,11 @@
 export default {
   data() {
     return {
-      userData: {
-        email: "",
-        firstName: "",
-        lastName: ""
-      },
-      password: ""
+      email: "",
+      firstName: "",
+      lastName: "",
+      password: "",
+      storeData: true
     };
   }
 };

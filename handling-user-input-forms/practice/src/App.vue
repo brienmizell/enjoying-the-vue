@@ -6,12 +6,11 @@
           <!-- Exercise 1 -->
           <!-- Create a Signup Form where you retrieve the following Information -->
           <!-- Full Name (First Name + Last Name) -->
-          <div class="form-group">
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" class="form-control" v-model.lazy="firstName" />
-            <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" class="form-control" v-model.lazy="lastName" />
-          </div>
+
+          <!-- Exercise 3 -->
+          <!-- Edit the Example from above and create a custom "Full Name" Control -->
+          <!-- which still holds the First Name and Last Name Input Field -->
+          <app-full-name v-model="fullName"></app-full-name>
           <!-- Mail -->
           <div class="form-group">
             <label for="email">Email:</label>
@@ -33,18 +32,14 @@
               <input type="radio" value="No" v-model="storeData" /> No
             </label>
           </div>
+          <!-- Exercise 2 -->
+          <!-- Only display the Form if it has NOT been submitted -->
+          <!-- Display the Data Summary ONCE the Form HAS been submitted -->
           <button
             type="submit"
             class="btn btn-primary"
             @click.prevent="submitted = true"
           >Submit the Form</button>
-          <!-- Exercise 2 -->
-          <!-- Only display the Form if it has NOT been submitted -->
-          <!-- Display the Data Summary ONCE the Form HAS been submitted -->
-
-          <!-- Exercise 3 -->
-          <!-- Edit the Example from above and create a custom "Full Name" Control -->
-          <!-- which still holds the First Name and Last Name Input Field -->
         </div>
       </div>
     </form>
@@ -56,7 +51,7 @@
             <h4>Your Data</h4>
           </div>
           <div class="panel-body">
-            <p>Full Name: {{firstName }} {{ lastName}}</p>
+            <p>Full Name: {{fullName}}</p>
             <p>Email: {{email}}</p>
             <p>Password: {{password}}</p>
             <p>Store in Database?: {{storeData}}</p>
@@ -68,16 +63,19 @@
 </template>
 
 <script>
+import FullName from "./components/FullName.vue";
 export default {
   data() {
     return {
+      fullName: "Brien Mizell",
       email: "",
-      firstName: "",
-      lastName: "",
       password: "",
       storeData: "Yes",
       submitted: false
     };
+  },
+  components: {
+    appFullName: FullName
   }
 };
 </script>
